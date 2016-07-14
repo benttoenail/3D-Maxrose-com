@@ -26,7 +26,7 @@ camera.position.z = 10;
 //Ground Helper
 var ground = new THREE.GridHelper(10, 0.5, 0xd3d3d3, 0xd3d3d3);
 ground.position.y = - 2;
-//scene.add(ground);
+scene.add(ground);
 
 //Lights
 var light = new THREE.DirectionalLight(0xfffff, 1);
@@ -104,7 +104,15 @@ function AnimateScene(){
 var geometry = new THREE.BoxGeometry(1, 1, 1);
 var cube = new THREE.Mesh(geometry, material);
 
-scene.add(cube);
+var moveCubeR = new THREE.Mesh(geometry, material);
+var moveCubeL = new THREE.Mesh(geometry, material);
+
+scene.add(cube, moveCubeR, moveCubeL);
+
+
+//TWEENING
+TweenMax.to(moveCubeR.position, 2, {x:5});
+TweenMax.to(moveCubeL.position, 2, {x:-5});
 
 //Main Render Function 
 var render = function() {
